@@ -43,7 +43,27 @@ app.post('/signup', data.array(), function(req, res) {
   var email = req.body.email;
   var message = "";
   
-  //Contact.find({first_name: firstName});
+  var query = Contact.findOne({first_name: firstName, last_name: lastName, email: email});
+  query.exec(function(err, person) {
+    if (err) {
+      console.log('error in query');
+    }
+    if (person === null) {
+      var contact = new Contact({
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        message: ""});
+      contact.save(function(err, contact) {
+        if (err)
+          return console.error(err);
+        else
+          return console.log('saved successfully');
+      });
+    }
+    else
+      console.log('person found in database');
+  });
 
   res.send('got it');
 });
