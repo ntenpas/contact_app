@@ -16,6 +16,7 @@ var Contact; // model
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   var contactSchema = new mongoose.Schema({
+    // schema fields have underscore
     first_name: String,
     last_name: String,
     email: String,
@@ -33,14 +34,17 @@ db.once('open', function() {
   */
 });
 
-app.post('/signup', data.fields(), function(req, res) {
+app.post('/signup', data.array(), function(req, res) {
   // get user information
   // check if user is already in database
   // add user to database if not already in it
-  console.log('req.body');
-  console.log(req.body);
-  console.log('data.fields()');
-  console.log(data.fields());
+  var firstName = req.body.firstName;
+  var lastName = req.body.lastName;
+  var email = req.body.email;
+  var message = "";
+  
+  //Contact.find({first_name: firstName});
+
   res.send('got it');
 });
 
