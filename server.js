@@ -1,7 +1,10 @@
 'use strict';
 var express = require('express');
-var app = express();
 var mongoose = require('mongoose');
+var multer = require('multer');
+var app = express();
+var data = multer();
+
 
 app.use(express.static('public'));
 
@@ -30,11 +33,14 @@ db.once('open', function() {
   */
 });
 
-app.post('/signup', function(req, res) {
+app.post('/signup', data.fields(), function(req, res) {
   // get user information
   // check if user is already in database
   // add user to database if not already in it
-  console.log(req);
+  console.log('req.body');
+  console.log(req.body);
+  console.log('data.fields()');
+  console.log(data.fields());
   res.send('got it');
 });
 
