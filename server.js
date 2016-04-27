@@ -34,8 +34,8 @@ app.post('/signup', function(req, res) {
   // get user information
   // check if user is already in database
   // add user to database if not already in it
-
-  res.send('success');
+  console.log(req);
+  res.send('got it');
 });
 
 app.listen(8080, function() {

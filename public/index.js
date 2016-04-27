@@ -12,7 +12,7 @@ function sendData() {
     console.log("oops! error.");
   });
 
-  xhr.open("POST", "http://localhost:8080/");
+  xhr.open("POST", "http://localhost:8080/signup");
 
   xhr.send(fd);
 }
