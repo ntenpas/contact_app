@@ -1,3 +1,17 @@
 p {
   color: purple;
 }
+#showContacts {
+  margin-top: 1rem;
+}
+#warning {
+  color: red;
+  display: none;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 0.3rem;
+}

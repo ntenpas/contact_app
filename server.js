@@ -23,15 +23,6 @@ db.once('open', function() {
     message: String
   });
   Contact = mongoose.model('Contact', contactSchema);
-  /*
-  var contact = new Contact({first_name: 'Kyle', last_name: 'Paulson',
-    email:'kypaulson@email.com'});
-  //console.log(contact.first_name);
-  contact.save(function(err, contact) {
-    if (err)
-      return console.error(err);
-  });
-  */
 });
 
 app.post('/signup', data.array(), function(req, res) {
@@ -58,14 +49,25 @@ app.post('/signup', data.array(), function(req, res) {
         if (err)
           return console.error(err);
         else
-          return console.log('saved successfully');
+          return console.log('person saved successfully');
       });
     }
     else
-      console.log('person found in database');
+      console.log('person found in database, no save');
   });
 
   res.send('got it');
+});
+
+app.get('/contacts', function(req, res) {
+  var query = Contact.find();
+  query.exec(function(err, people) {
+    if (err) {
+      console.log('error in query');
+    }
+    res.type('application/json');
+    res.json(people);
+  });
 });
 
 app.listen(8080, function() {
